@@ -95,8 +95,10 @@ def straight(ranks):
 def kind(n, ranks):
     """Возвращает первый ранг, который n раз встречается в данной руке.
     Возвращает None, если ничего не найдено"""
-    res = [r for r in ranks if ranks.count(r) == n]
-    return len(res) and res[0] or None
+    for r in ranks:
+        if ranks.count(r) == n:
+            return r
+    return None
 
 
 def two_pair(ranks):

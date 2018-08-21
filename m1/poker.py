@@ -104,8 +104,12 @@ def kind(n, ranks):
 def two_pair(ranks):
     """Если есть две пары, то возврщает два соответствующих ранга,
     иначе возвращает None"""
-    res = list({r for r in ranks if ranks.count(r) == 2})
-    return len(res) >= 2 and res[:2] or None
+    first_pair = kind(2, ranks)
+    if not first_pair:
+        return None
+    second_pair = kind(2, ranks[ranks.index(first_pair)+1:])
+    if second_pair:
+        return first_pair, second_pair
 
 
 @check_hand
